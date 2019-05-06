@@ -18,8 +18,8 @@
 #include <opencv2/highgui.hpp>
 #include "tracker_keydot.h"
 #include "tracker_curvedot.h"
-#include "ippe.h"
-
+//#include "ippe.h"
+#include <IPPE/ippe.h>
 
 class TrackHelper {
 
