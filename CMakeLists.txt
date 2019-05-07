@@ -20,6 +20,9 @@ set(OpenCV_STATIC OFF)
 find_package( OpenCV REQUIRED )
 include_directories(${OpenCV_INCLUDE_DIRS})
 
+find_package( Ippe REQUIRED)
+include_directories(${IPPE_INCLUDE_DIRS})
+
 # find_package(Qt5Widgets REQUIRED)
 # set(CMAKE_AUTOMOC ON)
 
@@ -53,5 +56,6 @@ add_executable(hybrid_marker_track
 
 target_link_libraries(hybrid_marker_track
 		${OpenCV_LIBS}
+		${IPPE_LIBS}
 		libpatterntracker
 		)
