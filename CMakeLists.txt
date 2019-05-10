@@ -58,5 +58,5 @@ add_executable(hybrid_marker_track
 target_link_libraries(hybrid_marker_track
 		${OpenCV_LIBS}
 		${IPPE_LIBRARIES}
-		libpatterntracker
+		patterntracker
 		)
