@@ -11,6 +11,14 @@ endif()
 file (GLOB TRACKER_LIB_SRC "*.cpp")
 file (GLOB TRACKER_LIB_HEADER "*.h")
 
-add_library (libpatterntracker STATIC ${TRACKER_LIB_SRC} ${TRACKER_LIB_HEADER})
+add_library (patterntracker SHARED ${TRACKER_LIB_SRC} ${TRACKER_LIB_HEADER})
 
-target_link_libraries(libpatterntracker libchessdetector ${OpenCV_LIBS})
+target_link_libraries(patterntracker chessdetector ${OpenCV_LIBS})
+
+install(TARGETS patterntracker
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        )
+
+install(FILES ${TRACKER_LIB_HEADER} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})

@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 2.8.11)
 #if(POLICY CMP0020)
 #	cmake_policy(SET CMP0020 NEW)
 #endif()
-
+include(GNUInstallDirs)
 project(hybrid_marker_track)
 
 set(CMAKE_CXX_STANDARD 11)
@@ -60,10 +60,3 @@ target_link_libraries(hybrid_marker_track
 		${IPPE_LIBRARIES}
 		libpatterntracker
 		)
-
-install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include)
-install(TARGETS hybrid_marker_track
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-        )
