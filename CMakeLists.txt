@@ -60,3 +60,10 @@ target_link_libraries(hybrid_marker_track
 		${IPPE_LIBRARIES}
 		libpatterntracker
 		)
+
+install(DIRECTORY ${CMAKE_SOURCE_DIR}/include/ DESTINATION include)
+install(TARGETS hybrid_marker_track
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+        )
