@@ -10,6 +10,8 @@ if(WIN32)
     set(CMAKE_DEBUG_POSTFIX "d")
 endif()
 
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
 add_library(chessdetector SHARED ${cpp} ${head})
 target_link_libraries(chessdetector ${OpenCV_LIBS})
 

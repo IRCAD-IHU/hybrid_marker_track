@@ -8,6 +8,8 @@ if(WIN32)
     set(CMAKE_DEBUG_POSTFIX "d")
 endif()
 
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
 file (GLOB TRACKER_LIB_SRC "*.cpp")
 file (GLOB TRACKER_LIB_HEADER "*.h")
 
