@@ -11,6 +11,7 @@ if(WIN32)
 endif()
 
 add_library(chessdetector SHARED ${cpp} ${head})
+target_link_libraries(chessdetector ${OpenCV_LIBS})
 
 install(TARGETS chessdetector
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
