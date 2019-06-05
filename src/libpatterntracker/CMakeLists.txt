@@ -10,7 +10,7 @@ endif()
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 file (GLOB TRACKER_LIB_SRC "*.cpp")
-file (GLOB TRACKER_LIB_HEADER "*.h*")
+file (GLOB TRACKER_LIB_HEADER "*.h" "*.hpp")
 
 add_library (patterntracker SHARED ${TRACKER_LIB_SRC} ${TRACKER_LIB_HEADER})
 
