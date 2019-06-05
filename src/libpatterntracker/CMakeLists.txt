@@ -1,7 +1,6 @@
 # OpenCV
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories( ${CMAKE_SOURCE_DIR}/src/libchessdetector )
-include_directories( ${CMAKE_SOURCE_DIR}/src/libpatterntracker )
 
 if(WIN32)
     # Postfix of .lib and .dll
@@ -11,7 +10,7 @@ endif()
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 file (GLOB TRACKER_LIB_SRC "*.cpp")
-file (GLOB TRACKER_LIB_HEADER "*.h")
+file (GLOB TRACKER_LIB_HEADER "*.h*")
 
 add_library (patterntracker SHARED ${TRACKER_LIB_SRC} ${TRACKER_LIB_HEADER})
 
