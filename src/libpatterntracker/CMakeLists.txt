@@ -1,7 +1,7 @@
 # OpenCV
 include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories( ${CMAKE_SOURCE_DIR}/src/libchessdetector )
-
+include_directories( ${CMAKE_SOURCE_DIR}/src/libpatterntracker )
 
 if(WIN32)
     # Postfix of .lib and .dll
