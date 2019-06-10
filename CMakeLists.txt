@@ -63,4 +63,5 @@ target_link_libraries(hybrid_marker_track
 		${OpenCV_LIBS}
 		${IPPE_LIBRARIES}
 		patterntracker
+		chessdetector
 		)
