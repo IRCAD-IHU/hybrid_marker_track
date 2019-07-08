@@ -577,8 +577,8 @@ void TrackerCurvedot::drawKeydots(cv::InputOutputArray _image)
 {
 	cv::Mat image = _image.getMat();
 	cv::Scalar sym_bgr, asym_bgr;
-	sym_bgr = isSymTracking ? cv::Scalar(0, 255, 255) : cv::Scalar(0, 255, 0);
-	asym_bgr = isAsymTracking ? cv::Scalar(0, 255, 255) : cv::Scalar(0, 255, 0);
+	sym_bgr = isSymTracking ? cv::Scalar(255, 255, 0) : cv::Scalar(0, 255, 0);
+	asym_bgr = isAsymTracking ? cv::Scalar(255, 255, 0) : cv::Scalar(0, 255, 0);
 
 	if ((curr_state & MID_CIR) || (curr_state & (MID_CIR & TOP_CIR)) || (curr_state & (MID_CIR & BOT_CIR)))
 	{
@@ -632,7 +632,7 @@ void TrackerCurvedot::drawKeydots(cv::InputOutputArray _image)
 	if (!curr_chess_dots.empty())
 	{
 		for (auto i = 0; i < curr_chess_dots.size(); i++)
-			cv::circle(image, curr_chess_dots[i], 2, cv::Scalar(0, 255, 255), 2, CV_AA);	
+			cv::circle(image, curr_chess_dots[i], 2, cv::Scalar(255, 255, 0), 2, CV_AA);
 
 // 		cv::Point pt1, pt2;
 // 		pt1.x = 10; pt1.y = (-m_chess_line[0] * pt1.x - m_chess_line[2])/m_chess_line[1];
