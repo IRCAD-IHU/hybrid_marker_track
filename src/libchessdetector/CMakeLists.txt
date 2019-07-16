@@ -10,4 +10,15 @@ if(WIN32)
     set(CMAKE_DEBUG_POSTFIX "d")
 endif()
 
-add_library(libchessdetector STATIC ${cpp} ${head})
+set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+
+add_library(chessdetector SHARED ${cpp} ${head})
+target_link_libraries(chessdetector ${OpenCV_LIBS})
+
+install(TARGETS chessdetector
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        )
+
+install(FILES ${head} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})

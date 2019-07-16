@@ -3,9 +3,15 @@ cmake_minimum_required(VERSION 2.8.11)
 #if(POLICY CMP0020)
 #	cmake_policy(SET CMP0020 NEW)
 #endif()
-
+include(GNUInstallDirs)
 project(hybrid_marker_track)
-list( APPEND CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS}")
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin )
+set( CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
+set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
 
 # set(CMAKE_LIBRARY_PATH "C:\\Program Files (x86)\\Windows Kits\\8.0\\Lib\\win8\\um\\x64")
 
@@ -17,6 +23,10 @@ set(OpenCV_STATIC OFF)
 # Find OpenCV
 find_package( OpenCV REQUIRED )
 include_directories(${OpenCV_INCLUDE_DIRS})
+
+#Find IPPE
+find_package(Ippe REQUIRED)
+include_directories(${IPPE_INCLUDE_DIRS})
 
 # find_package(Qt5Widgets REQUIRED)
 # set(CMAKE_AUTOMOC ON)
@@ -51,5 +61,7 @@ add_executable(hybrid_marker_track
 
 target_link_libraries(hybrid_marker_track
 		${OpenCV_LIBS}
-		libpatterntracker
+		${IPPE_LIBRARIES}
+		patterntracker
+		chessdetector
 		)
