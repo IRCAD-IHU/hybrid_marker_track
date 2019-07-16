@@ -266,10 +266,10 @@
  */
 void corner_detect5(const size_t w, const size_t h, const uint8_t image[], int16_t response[])
 {
-    int x, y;
     // funny bounds due to sampling ring radius (5) and border of previously applied blur (2)
-    for (y = 7; y < h - 7; y++)
-        for (x = 7; x < w - 7; x++) {
+    #pragma omp parallel for schedule(dynamic)
+    for(int y = 7; y < h - 7; y++)
+        for(int x = 7; x < w - 7; x++) {
             const unsigned offset = x + y * w;
             uint8_t circular_sample[16];
 
@@ -291,23 +291,47 @@ void corner_detect5(const size_t w, const size_t h, const uint8_t image[], int16
             circular_sample[13] = image[offset + 5];
 
             // purely horizontal local_mean samples
-            uint16_t local_mean = (image[offset - 1] + image[offset] + image[offset + 1]) * 16 / 3;
+            const uint16_t local_mean = (image[offset - 1] + image[offset] + image[offset + 1]) * 16 / 3;
 
             uint16_t sum_response = 0;
             uint16_t diff_response = 0;
             uint16_t mean = 0;
 
-            int sub_idx;
-            for (sub_idx = 0; sub_idx < 4; ++sub_idx) {
-                uint8_t a = circular_sample[sub_idx];
-                uint8_t b = circular_sample[sub_idx + 4];
-                uint8_t c = circular_sample[sub_idx + 8];
-                uint8_t d = circular_sample[sub_idx + 12];
+	    uint8_t a = circular_sample[0];
+	    uint8_t b = circular_sample[4];
+	    uint8_t c = circular_sample[8];
+	    uint8_t d = circular_sample[12];
 
-                sum_response += abs(a - b + c - d);
-                diff_response += abs(a - c) + abs(b - d);
-                mean += a + b + c + d;
-            }
+	    sum_response += abs(a - b + c - d);
+	    diff_response += abs(a - c) + abs(b - d);
+	    mean += a + b + c + d;
+
+	    a = circular_sample[1];
+	    b = circular_sample[5];
+	    c = circular_sample[9];
+	    d = circular_sample[13];
+
+	    sum_response += abs(a - b + c - d);
+	    diff_response += abs(a - c) + abs(b - d);
+	    mean += a + b + c + d;
+
+	    a = circular_sample[2];
+	    b = circular_sample[6];
+	    c = circular_sample[10];
+	    d = circular_sample[14];
+
+	    sum_response += abs(a - b + c - d);
+	    diff_response += abs(a - c) + abs(b - d);
+	    mean += a + b + c + d;
+
+	    a = circular_sample[3];
+	    b = circular_sample[7];
+	    c = circular_sample[11];
+	    d = circular_sample[15];
+
+	    sum_response += abs(a - b + c - d);
+	    diff_response += abs(a - c) + abs(b - d);
+	    mean += a + b + c + d;
 
             response[offset] = sum_response - diff_response - abs(mean - local_mean);
         }
