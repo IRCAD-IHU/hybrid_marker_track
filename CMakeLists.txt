@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 2.8.11)
 include(GNUInstallDirs)
 project(hybrid_marker_track)
 
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set( CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin )
@@ -15,8 +15,12 @@ set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
 
 # set(CMAKE_LIBRARY_PATH "C:\\Program Files (x86)\\Windows Kits\\8.0\\Lib\\win8\\um\\x64")
 
-# add_definitions(-DNOMINMAX)
-set(CMAKE_BUILD_TYPE Debug)
+set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug;Release")
+
+if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug"
+		AND NOT CMAKE_BUILD_TYPE STREQUAL "Release")
+	message(FATAL_ERROR "Invalid value for CMAKE_BUILD_TYPE: '${CMAKE_BUILD_TYPE}' (required Debug, Release)")
+endif()
 
 set(OpenCV_STATIC OFF)
 
