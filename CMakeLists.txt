@@ -15,11 +15,17 @@ set( CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib )
 
 # set(CMAKE_LIBRARY_PATH "C:\\Program Files (x86)\\Windows Kits\\8.0\\Lib\\win8\\um\\x64")
 
-set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug;Release")
+# On Windows, if the user doesn't specify a value,
+# 'CMAKE_BUILD_TYPE' is automatically initialized to 'Debug' after 'project()'.
+# So we need to check this variable at this point.
+set(CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE} CACHE STRING "Choose the type of build, options are: Debug, Release, RelWithDebInfo or MinSizeRel")
+set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug;Release;RelWithDebInfo;MinSizeRel")
 
 if(NOT CMAKE_BUILD_TYPE STREQUAL "Debug"
-		AND NOT CMAKE_BUILD_TYPE STREQUAL "Release")
-	message(FATAL_ERROR "Invalid value for CMAKE_BUILD_TYPE: '${CMAKE_BUILD_TYPE}' (required Debug, Release)")
+        AND NOT CMAKE_BUILD_TYPE STREQUAL "Release"
+        AND NOT CMAKE_BUILD_TYPE STREQUAL "RelWithDebInfo"
+        AND NOT CMAKE_BUILD_TYPE STREQUAL "MinSizeRel")
+    message(FATAL_ERROR "Invalid value for CMAKE_BUILD_TYPE: '${CMAKE_BUILD_TYPE}' (required Debug, Release, RelWithDebInfo or MinSizeRel)")
 endif()
 
 set(OpenCV_STATIC OFF)
