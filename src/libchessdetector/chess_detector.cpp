@@ -32,7 +32,10 @@ ChessDetector::~ChessDetector()
 		m_resp = NULL;
 		m_resp_init = false;
 	}
-
+	if(m_points)
+	{
+		free(m_points);
+	}
 }
 
 bool ChessDetector::detect(
