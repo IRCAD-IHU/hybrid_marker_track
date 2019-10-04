@@ -180,8 +180,7 @@ TrackHelper::TrackHelper (std::string filename) :
 
 TrackHelper::~TrackHelper()
 {
-    if (!tracker)
-        delete tracker;
+    delete tracker;
 }
 
 
