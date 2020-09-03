@@ -360,6 +360,8 @@ int non_max_sup_pts(size_t w, size_t h, int16_t image[], int border,
 	// prune the neighbourhood weaklings
 	int culled = cull_neighbourhood(num_found, cp, cn_halfwidth);
 
+	free(*pt_output);
+
 	// allocate storage for the accepted points
 	if (!(*pt_output = new_pt_output(num_found - culled))) {
 		fprintf(stderr, "Point-coord struct init failed\n");
@@ -391,6 +393,8 @@ int non_max_sup_pts(size_t w, size_t h, int16_t image[], int border,
 			append_pt(*pt_output, &fc);
 		}
 	}
+
+	delete [] cp;
 
 	return num_found - culled;
 }

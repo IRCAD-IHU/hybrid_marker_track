@@ -7,11 +7,11 @@ using namespace cv;
 int main(int argc, char *argv[])
 {
 
-	string video_filename = "hybrid_test_video.mp4";	//hybrid_test_video / circular_test_video
+	string video_filename = "../testVideos/hybrid_test_video.mp4";	//hybrid_test_video / circular_test_video
     VideoCapture vid_cap (video_filename);
 
 	if(!vid_cap.isOpened())
-	{
+    {
 		std::cout << "Cannot open: " << video_filename << std::endl;
 	}
 

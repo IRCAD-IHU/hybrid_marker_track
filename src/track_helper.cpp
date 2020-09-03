@@ -180,8 +180,7 @@ TrackHelper::TrackHelper (std::string filename) :
 
 TrackHelper::~TrackHelper()
 {
-    if (!tracker)
-        delete tracker;
+    delete tracker;
 }
 
 
@@ -465,7 +464,7 @@ void TrackHelper::draw_rect(const cv::Mat &cHp, cv::Mat & img, cv::Scalar color)
         corners[i].z = corners_hm.at<double>(2,i)/corners_hm.at<double>(3,i);
     }
 
-    cv::Mat rVec, tVec, distCoeffs;
+    cv::Mat rVec, tVec;
     rVec = cv::Mat::zeros(3,1,CV_32FC1); tVec = cv::Mat::zeros(3,1,CV_32FC1);
 	std::vector<cv::Point2f> corners_2d;
 
