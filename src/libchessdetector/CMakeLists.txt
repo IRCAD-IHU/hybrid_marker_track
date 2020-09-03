@@ -12,7 +12,7 @@ endif()
 set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 
 add_library(chessdetector SHARED ${cpp} ${head})
-target_link_libraries(chessdetector ${OpenCV_LIBS})
+target_link_libraries(chessdetector PUBLIC ${OpenCV_LIBS})
 
 find_package(OpenMP)
 if(${OPENMP_FOUND})
